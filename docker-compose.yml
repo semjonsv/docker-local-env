@@ -1,0 +1,36 @@
+version: '3'
+services:
+
+  web:
+    image: nginx:alpine
+    container_name: web
+    ports:
+      - "8080:80"
+    volumes:
+      - ../blog:/var/www
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - development
+
+  db:
+    image: mysql
+    container_name: db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - ./mysql:/var/lib/mysql
+    networks:
+      - development
+
+  laravel:
+    image: php:7-fpm
+    container_name: laravel
+    volumes:
+      - ../blog/:/var/www
+    networks:
+      - development
+
+networks:
+  development:
