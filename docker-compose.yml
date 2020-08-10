@@ -7,7 +7,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ../blog:/var/www
+      - ../php-api:/var/www
       - ./nginx/:/etc/nginx/conf.d/
     networks:
       - development
@@ -16,7 +16,7 @@ services:
     image: mysql
     container_name: db
     ports:
-      - "3306:3306"
+      - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: password
     volumes:
@@ -30,9 +30,21 @@ services:
       dockerfile: Dockerfile
     container_name: laravel
     volumes:
-      - ../blog/:/var/www
+      - ../php-api/:/var/www
     networks:
       - development
+
+  vue:
+    build:
+      context: .
+      dockerfile: Dockerfile-vue
+    container_name: vue
+    volumes:
+      - ../vue-front:/app
+    ports:
+      - "8081:8080"
+    command:
+      "npm run serve"
 
 networks:
   development:
