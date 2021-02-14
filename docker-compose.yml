@@ -5,9 +5,10 @@ services:
     image: nginx:alpine
     container_name: web
     ports:
-      - "8080:80"
+      - "80:80"
     volumes:
       - ../php-api:/var/www
+      - ../vue-front/dist:/var/dist
       - ./nginx/:/etc/nginx/conf.d/
     networks:
       - development
@@ -16,7 +17,7 @@ services:
     image: mysql
     container_name: db
     ports:
-      - "3307:3306"
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: password
     volumes:
@@ -33,18 +34,6 @@ services:
       - ../php-api/:/var/www
     networks:
       - development
-
-  vue:
-    build:
-      context: .
-      dockerfile: Dockerfile-vue
-    container_name: vue
-    volumes:
-      - ../vue-front:/app
-    ports:
-      - "8081:8080"
-    command:
-      "npm run serve"
 
 networks:
   development:
