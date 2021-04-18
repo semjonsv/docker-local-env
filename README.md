@@ -1,3 +1,3 @@
 # PHP local development environment
 
-Laravel application with Vue CLI generated html code
+Laravel API application with Vue SPA frontend
