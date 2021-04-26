@@ -1,6 +1,4 @@
-# PHP local development environment
-
-## Laravel API application with Vue SPA frontend
+# Laravel API with Vue SPA frontend (local dev environment)
 
 ### :fire: Nginx config:
 ````
