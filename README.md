@@ -1,5 +1,5 @@
-# Laravel API with Vue SPA frontend (local dev environment)
-
+# Laravel API with Vue SPA frontend 
+#### Local PHP Development Environment in Docker
 ### :fire: Nginx config:
 ````
 server {
